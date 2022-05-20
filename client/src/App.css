@@ -46,7 +46,7 @@ html, body {
     .banner {
     position: relative;
     height: 250px;
-    background-image: url("/public/hotel.jpg");  
+    background-image: url("/public/laptop-coding-terminal.avif");  
     background-size: cover;
     display: flex;
     justify-content: center;

@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import axios from "axios";
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +13,7 @@ class App extends React.Component {
         zip: "",
         city: "",
         state: "",
-        eaddress: "",
+        email: "",
         phone: "",
         checkindate: "",
         checkoutdate: "",
@@ -25,6 +26,8 @@ class App extends React.Component {
         room2Type: "",
         instructions: "",
       },
+      success : null,
+      error: null
     };
   }
 
@@ -37,10 +40,20 @@ class App extends React.Component {
     });
   };
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state.formData);
+  onSubmit = async (e) => {
+    
+    try{
+      e.preventDefault();
+      console.log(this.state.formData);
+      const res = await axios.post("/hotelbooking", this.state.formData);
+      console.log(res.data);
+    }catch(error){
+      console.log(error.response.data);
+    }
+   
     // this.onChange(this.state.formData);
+
+     
   };
 
   render() {
@@ -92,10 +105,10 @@ class App extends React.Component {
                 <input id="state" type="text" name="state" onChange={this.onChange} />
               </div>
               <div className="item">
-                <label htmlFor="eaddress">
+                <label htmlFor="email">
                   Email Address<span>*</span>
                 </label>
-                <input id="eaddress" type="text" name="eaddress" onChange={this.onChange} />
+                <input id="email" type="text" name="email" onChange={this.onChange} />
               </div>
               <div className="item">
                 <label htmlFor="phone">
